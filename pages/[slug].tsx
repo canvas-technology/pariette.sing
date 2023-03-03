@@ -11,8 +11,8 @@ const Page: NextPageWithLayout = ({ canvas }) => {
   return (
     <>
       <Head>
-        <title>{canvas.title}</title>
-        <meta name="description" content={canvas.title} />
+        <title>evet</title>
+        <meta name="description" content="react geliyor" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -22,18 +22,16 @@ const Page: NextPageWithLayout = ({ canvas }) => {
           title: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined;
           content: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined;
         }) => (
-          <Link
-            key={r.id}
-            href={{pathname: '/[slug]', query: { slug: canvas.slug }}}
-          >
+          <div key={r.id}>
             <h1>{r.title}</h1>
             <p>{ r.content }</p>
-          </Link>
+          </div>
         ))}
       </main>
     </>
   )
 }
+
 
 Page.getLayout = function getLayout(page: ReactElement) {
   return (
@@ -43,9 +41,11 @@ Page.getLayout = function getLayout(page: ReactElement) {
   )
 }
 
-export async function getServerSideProps() {
-  const res = await fetch(`${endpoint.getCanvas}/pariette-homepage?withContent=true`)
+export async function getServerSideProps({ params }) {
+  console.log(params.slug)
+  const res = await fetch(`${endpoint.getCanvas}/${params.slug}?withContent=true`)
   const data = await res.json()
+  // console.log(data)
   return {
     props: { canvas: data }
   }
