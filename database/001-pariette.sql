@@ -201,20 +201,23 @@ CREATE TABLE IF NOT EXISTS navigation (
   FOREIGN KEY (item_id) REFERENCES navigation (id) ON DELETE CASCADE ON UPDATE NO ACTION
 );
 
-INSERT INTO
-  website (token, url, title, description, meta_title, meta_description, meta_keywords, meta_sitemap, lang, locales, logo_web, logo_mobile, logo_dark_web, logo_dark_mobile, logo_favicon, mail_driver, mail_host, mail_port, mail_sender, mail_account, mail_password, mail_encryption, cdn_url, status, publish, created_at)
-  values  ('c49n7v1s', 'https://pariette.com/', 'Pariette.com', 'Best Headless Website on the World', '', '', '', '', 'en', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1, 1, '2023-03-06 22:51:21');
--- INSERT INTO seo () values ();
+INSERT INTO website (token, url, title, description, meta_title, meta_description, meta_keywords, meta_sitemap, lang, locales, logo_web, logo_mobile, logo_dark_web, logo_dark_mobile, logo_favicon, mail_driver, mail_host, mail_port, mail_sender, mail_account, mail_password, mail_encryption, cdn_url, status, publish, created_at) values  ('c49n7v1s', 'https://pariette.com/', 'Pariette.com', 'Best Headless Website on the World', '', '', '', '', 'en', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1, 1, '2023-03-06 22:51:21');
 INSERT INTO user (token, name, surname, email, password, login_method, confirmation_code, confirmation_wait, phone, avatar, signature, ip, old_ip, auth_group, status, created_at) values ('c49n7v1s', 'ahmet selim', 'çil', 'hi@ahmetsc.com', 'pass', 'password', '', 0, '+905382578462', '', '', '', '', 'admin', 1, '2023-03-06 22:51:21');
--- INSERT INTO canvas () values ();
--- INSERT INTO content () values ();
--- INSERT INTO attachment () values ();
--- INSERT INTO canvas_file () values ();
--- INSERT INTO ticket () values ();
--- INSERT INTO ticket_post () values ();
--- INSERT INTO lookup () values ();
+INSERT INTO canvas (type, title, slug, user_id, status, publish) values ('homepage', 'pariette homepage', 'pariette_homepage', 1, 1, 1);
+INSERT INTO canvas (type, title, slug, user_id, status, publish) values ('navigation', 'pariette header navigation', 'pariette_header_navigation', 1, 1, 1);
+INSERT INTO content (canvas_id, user_id, lang, type, title, description, content, keywords, cover_web, cover_mobile, meta_title, meta_description, line, status, publish) values (1, 1, 'tr', 'carousel', 'pariette home carousel', '', '', '', '', '', '', '', 1, 1, 1);
+INSERT INTO content (canvas_id, user_id, lang, type, title, description, content, keywords, cover_web, cover_mobile, meta_title, meta_description, line, status, publish) values (1, 1, 'tr', 'section_hero', 'pariette hero section', '', '<h1>hero</h1>', '', '', '', '', '', 2, 1, 1);
+INSERT INTO content (canvas_id, user_id, lang, type, title, description, content, keywords, cover_web, cover_mobile, meta_title, meta_description, line, status, publish) values (1, 1, 'tr', 'section_page', 'pariette page section', '', '<h1>page</h1>', '', '', '', '', '', 3, 1, 1);
+INSERT INTO attachment (title, alt, href, cdn_url, file_format, file_size, file_name, creator, license, source, status) values ('slider 1', 'slider 1', null, 'assets', 'jpg', 1024, 'slider_1.jpg', 'ahmet selim cil', 'free', 'canvas technology solutions', 1);
+INSERT INTO attachment (title, alt, href, cdn_url, file_format, file_size, file_name, creator, license, source, status) values ('slider 2', 'slider 2', null, 'assets', 'jpg', 1024, 'slider_2.jpg', 'ahmet selim cil', 'free', 'canvas technology solutions', 1);
+INSERT INTO canvas_file (content_id, file_id, line, status) values (1,1,1,1);
+INSERT INTO canvas_file (content_id, file_id, line, status) values (1,2,2,1);
+INSERT INTO navigation (canvas_id, item_id, lang, title, alt, route, url, link, params, icon, image, target, icon_only, line, status) values (2, null, 'tr', 'ana sayfa', 'ana sayfa', '/', null, null, null, null, null, null, 0, 1, 1);
+INSERT INTO navigation (canvas_id, item_id, lang, title, alt, route, url, link, params, icon, image, target, icon_only, line, status) values (2, null, 'tr', 'hakkımızda', 'hakkımızda', '/about-us', null, null, null, null, null, null, 0, 2, 1);
+INSERT INTO navigation (canvas_id, item_id, lang, title, alt, route, url, link, params, icon, image, target, icon_only, line, status) values (2, null, 'tr', 'iletişim', 'iletişim', '/contact', null, null, null, null, null, null, 0, 3, 1);
+-- INSERT INTO lookup (type, main, title, slug) values ('', null, '', '');
+-- INSERT INTO seo () values ();
 -- INSERT INTO lookup_item () values ();
--- INSERT INTO navigation () values ();
 
 -- Down
 DROP TABLE website;

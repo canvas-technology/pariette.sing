@@ -16,7 +16,7 @@ export default async function getContents(req: NextApiRequest, res: NextApiRespo
       }
 
       if (req.query.withContent) {
-        const rels = await db.all('SELECT * FROM canvas_content WHERE status = ? and canvas_id = ? ORDER BY line ASC', [
+        const rels = await db.all('SELECT * FROM content WHERE status = ? and canvas_id = ? ORDER BY line ASC', [
           req.query.status ?? 1,
           canvas.id
         ])
